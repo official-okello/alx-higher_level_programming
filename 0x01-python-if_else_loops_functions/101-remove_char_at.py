@@ -3,7 +3,7 @@
 def remove_char_at(str, n):
     if n > len(str) or str == '':
         print(str)
-	else:
+    else:
         for x in range(len(str)):
             if str[x] == str[n]:
                 print('', end='')
