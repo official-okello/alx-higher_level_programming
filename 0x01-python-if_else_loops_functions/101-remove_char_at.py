@@ -9,4 +9,4 @@ def remove_char_at(str, n):
                 print('', end='')
             else:
                 print(str[x], end='')
-return ("")
+    return ("")
