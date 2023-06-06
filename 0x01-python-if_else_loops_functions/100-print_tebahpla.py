@@ -2,7 +2,7 @@
 
 for x in range(122, 96, -1):
     if x % 2 == 0:
-        num = 32
+        num = 0
     else:
-        nume = 0
+        num = 32
     print("{}".format(chr(x - num)), end='')
