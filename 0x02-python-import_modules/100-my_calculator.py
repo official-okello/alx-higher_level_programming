@@ -1,13 +1,14 @@
 #!/usr/bin/python3
 
+import sys
 from calculator_1 import add, sub, mul, div
-if len(sys.argv) != 3:
+if len(sys.argv) != 4:
     print("Usage: ./100-my_calculator.py <a> <operator> <b>")
     sys.exit(1)
 else:
-    op = sys.argv[1]
-    a = sys.argv[0]
-    b = sys.argv[2]
+    op = sys.argv[2]
+    a = sys.argv[1]
+    b = sys.argv[3]
 
     if op == '+':
         print("{} + {} = {}".format(a, b, add(a, b)))
