@@ -2,11 +2,11 @@
 
 import sys
 if __name__ == "__main__":
-    length = len(sys.argv) - 1
+    length = len(sys.argv)
 
-    if i == 0:
+    if i == 1:
         print("{} arguments.".format(length))
-    elif i == 1:
+    elif i == 2:
         print("{} argument:".format(length))
     else:
         print("{} arguments:".format(length))
