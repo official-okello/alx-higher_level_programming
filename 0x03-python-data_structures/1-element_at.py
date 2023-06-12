@@ -5,6 +5,8 @@ def element_at(my_list, idx):
         return (None)
 
     l = len(my_list)
-    if idx > l - 1:
+    if idx >= l:
+        return (None)
+	if idx = []:
         return (None)
     return (my_list[idx])
