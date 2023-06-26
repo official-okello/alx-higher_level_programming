@@ -5,10 +5,8 @@ def safe_print_list(my_list=[], x=0):
         i = 0
         while i < x:
             print(my_list[i], end="")
-            i = i + 1
-        print()
+            i += 1
         return i
     except:
-        print()
         return i
     print("\n")
