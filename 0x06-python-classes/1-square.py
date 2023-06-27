@@ -1,10 +1,15 @@
 #!/usr/bin/python3
-'''Creates a Class Square'''
+""" Square Class"""
+
 
 class Square:
-    '''Defines a Square class.
-    ''''
-    def __init__(self, size):
-        '''Initializes Square by giving it a size attribute.
-        '''
+    """ Declares a square class """
+
+    def __init__(self, size) -> None:
+        """
+        Initializes class attributes
+
+        Args:
+            size: size of square
+        """
         self.__size = size
