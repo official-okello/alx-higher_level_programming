@@ -66,7 +66,7 @@ class Rectangle:
             return rectangle
 
         for i in range(self.height):
-            rectangle += (str(print_symbol) * self.width) + "\n"
+            rectangle += ((print_symbol) * self.width) + "\n"
 
         return rectangle[:-1]
 
