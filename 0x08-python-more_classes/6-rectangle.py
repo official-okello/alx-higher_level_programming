@@ -6,7 +6,8 @@
 
 class Rectangle:
     """Class that defines a rectangle"""
-    instance_count = 0
+    number_of_instances = 0
+    instance_count = number_of_instances
 
     def __init__(self, width=0, height=0):
         """Method that initializes the instance"""
