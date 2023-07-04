@@ -1,0 +1,99 @@
+# 0-add_integer.txt
+=============================
+ How to Use 0-add_integer.py
+=============================
+
+Using function called ''add_integer()''.
+
+>>> add_integer = __import__('0-add_integer').add_integer
+
+>>> add_integer()
+Traceback (most recent call last):
+          ...
+TypeError: add_integer() missing 1 required positional argument: 'a'
+
+Numbers
+=========
+>>> add_integer(2, 3)
+5
+
+>>> add_integer(5)
+103
+
+>>> add_integer(2.0, 3)
+5
+
+>>> add_integer(2, 3.0)
+5
+
+>>> add_integer(10.0, 15.0)
+25
+
+
+>>> add_integer(-2, 3)
+1
+
+>>> add_integer(2, -3)
+-1
+
+>>> add_integer(100.5, -10)
+90
+
+""" integer and infinity float """
+>>> add_integer(5, 1e400)
+Traceback (most recent call last):
+          ...
+OverflowError: cannot convert float infinity to integer
+
+""" infinity float and negative integer """
+>>> add_integer(999e9999, -1)
+Traceback (most recent call last):
+          ...
+OverflowError: cannot convert float infinity to integer
+
+>>> add_integer('H', 3)
+Traceback (most recent call last):
+          ...
+TypeError: a must be an integer
+
+>>> add_integer(3, 'H')
+Traceback (most recent call last):
+          ...
+TypeError: b must be an integer
+
+>>> add_integer(3, "Holberton")
+Traceback (most recent call last):
+          ...
+TypeError: b must be an integer
+
+>>> add_integer("Holberton", b)
+Traceback (most recent call last):
+          ...
+NameError: name 'b' is not defined
+
+
+>>> add_integer(a, 123)
+Traceback (most recent call last):
+          ...
+NameError: name 'a' is not defined
+
+>>> add_integer(None, 2)
+Traceback (most recent call last):
+          ...
+TypeError: a must be an integer
+
+>>> add_integer(5, None)
+Traceback (most recent call last):
+          ...
+TypeError: b must be an integer
+
+>>> add_integer([1, 2], 15)
+Traceback (most recent call last):
+          ...
+TypeError: a must be an integer
+
+>>> add_integer(-----9, -----9)
+-18
+
+>>> type(add_integer(5, 5))
+<class 'int'>
