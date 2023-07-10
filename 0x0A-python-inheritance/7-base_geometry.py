@@ -1,9 +1,12 @@
 #!/usr/bin/python3
+""" Main container """
+
+
 class BaseGeometry:
     """ Class that defines the attributes of Geometric Shapes """
 
     def area(self):
-        """ Method that defines the area of a geomtric shape """
+        """ Method that defines the area of a geometric shape """
 
         raise Exception("area() is not implemented")
 
