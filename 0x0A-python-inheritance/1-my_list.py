@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+""" Main container """
+
+
 class MyList(list):
     """ Class that inherits the attributes references of class list
 
