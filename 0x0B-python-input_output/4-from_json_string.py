@@ -1,9 +1,10 @@
 #!/usr/bin/python3
-""" Module that contains a function that appends to a text file """
+""" The "from_json_string" function container """
+
+import json
 
 
-def append_write(filename="", text=""):
-    """ Function that appends to a text file """
+def from_json_string(my_str):
+    """ Returns an object represented by a JSON string """
 
-    with open(filename, 'a', encoding="utf-8") as f:
-        return f.write(text)
+    return json.loads(my_str)
