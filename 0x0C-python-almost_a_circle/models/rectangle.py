@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+FF#!/usr/bin/python3
 """ Rectangle Mudule """
 
 from models.base import Base
@@ -97,3 +97,8 @@ class Rectangle(Base):
         else:
             for key, value in kwargs.items():
                 setattr(self, key, value)
+
+    def to_dictionary(self):
+        """return dictionary representation of Rectangle"""
+        return {'x': self.x, 'y': self.y, 'id': self.id,
+                'height': self.height, 'width': self.width}
