@@ -1,103 +1,93 @@
-#!/usr/bin/python3
-""" Rectangle Mudule """
+ #!/usr/bin/python3
+"""Class Module"""
 from models.base import Base
 
 
 class Rectangle(Base):
-    """ Class rectangle that inherits from Base class """
+    """Rectangle subclass"""
 
     def __init__(self, width, height, x=0, y=0, id=None):
-        """ Initialization of class rectangle """
-
+        """instance initialization"""
         super().__init__(id)
-        self.__width = width
-        self.__height = height
-        self.__x = x
-        self.__y = y
-
-    @property
-    def width(self):
-        """ width getter """
-        return self.__width
-
-    @width.setter
-    def width(self, value):
-        """ width setter """
-        if type(value) is not int:
-            raise TypeError("width must be an integer")
-        if value <= 0:
-            raise ValueError("width must be > 0")
-        self.__width = value
-
-    @property
-    def height(self):
-        """ height getter """
-        return self.__height
-
-    @height.setter
-    def height(self, value):
-        """ height setter """
-        if type(value) is not int:
-            raise TypeError("height must be an integer")
-        if value <= 0:
-            raise ValueError("height must be > 0")
-        self.__height = value
-
-    @property
-    def x(self):
-        """ x getter """
-        return self.__x
-
-    @x.setter
-    def x(self. value):
-        """ x setter """
-        if type(value) is not int:
-            raise TypeError("x must be an integer")
-        if value <= 0:
-            raise ValueError("x must be > 0")
-        self.__x = value
-
-    @property
-    def y(self):
-        """ y getter """
-        return self.__y
-
-    @y.setter
-    def y(self, value):
-        """ y setter """
-        if type(value) is not int:
-            raise TypeError("y must be an integer")
-        if value <= 0:
-            raise ValueError("y must be > 0")
-        self.__y = value
+        self.width = width
+        self.height = height
+        self.x = x
+        self.y = y
 
     def area(self):
-        """ returns the area value of the rectangle """
-        return self.__height * self.__width
-
-    def display(self):
-        """ prints in stdout the Rectangle instance with # """
-        for row in range(self.__y):
-            print()
-        for row in range(self.__height):
-            print("{}{}".format(" " * self.__x, "#" * self.__width))
-
-    def __str__(self):
-        """ str special method """
-        return ("[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.__x,
-                self.__y, self.__width, self.__height))
+        """returns area of width & height"""
+        return self.width * self.height
 
     def update(self, *args, **kwargs):
-        """  assigns an argument to each attribute """
-        if args is not None and len(args) is not 0:
-            list_atr = ['id', 'width', 'height', 'x', 'y']
-            for i in range(len(args)):
-                setattr(self, list_atr[i], args[i])
+        """update attributes"""
+        if args:
+            listme = ['id', 'width', 'height', 'x', 'y']
+            i = 0
+            for arg in args:
+                setattr(self, listme[i], arg)
+                i += 1
         else:
             for key, value in kwargs.items():
                 setattr(self, key, value)
 
+    def display(self):
+        """print into stdout"""
+        for row in range(self.y):
+            print()
+        for row in range(self.height):
+            print("{}{}".format(" " * self.x, "#" * self.width))
+
+    def __str__(self):
+        """print method"""
+        return "[{}] ({}) {}/{} - {}/{}".format(self.__class__.__name__,
+                                                self.id, self.__x, self.__y,
+                                                self.__width, self.__height)
+
     def to_dictionary(self):
-        """return dictionary representation of Rectangle"""
+        """returns dict representation of Rectangle"""
         return {'x': self.x, 'y': self.y, 'id': self.id,
                 'height': self.height, 'width': self.width}
+
+    @property
+    def width(self):
+        """width getter"""
+        return self.__width
+
+    @width.setter
+    def width(self, value):
+        """width setter"""
+        self.integer_validator('width', value)
+        self.__width = value
+
+    @property
+    def height(self):
+        """height getter"""
+        return self.__height
+
+    @height.setter
+    def height(self, value):
+        """height setter"""
+        self.integer_validator('height', value)
+        self.__height = value
+
+    @property
+    def x(self):
+        """x getter"""
+        return self.__x
+
+    @x.setter
+    def x(self, value):
+        """x setter"""
+        self.integer_validator2('x', value)
+        self.__x = value
+
+    @property
+    def y(self):
+        """y getter"""
+        return self.__y
+
+    @y.setter
+    def y(self, value):
+        """y setter"""
+        self.integer_validator2('y', value)
+        self.__y = value 
