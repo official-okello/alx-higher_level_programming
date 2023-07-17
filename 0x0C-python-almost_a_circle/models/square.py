@@ -1,47 +1,73 @@
 #!/usr/bin/python3
-""" Square module """
-from models.rectangle import Rectangle
+"""Class Module"""
+import json
 
 
-class Square(Rectangle):
-    def __init__(self, size, x=0, y=0, id=None):
-        """ Initializes Square class """
-        super().__init__(size, size, x, y, id)
+class Base:
+    """ base class"""
+    __nb_objects = 0
 
-    def __str__(self):
-        """ returns square in format """
-        return ("[Square] ({}) {}/{} - {}".format(self.id, self.x,
-                self.y, self.size))
-
-    @property
-    def size(self):
-        """ size getter """
-        return self.width
-
-    @size.setter
-    def size(self, value):
-        """ size setter """
-        self.width = value
-        self.height = value
-
-    def update(self, *args, **kwargs):
-        """ assigns attributes """
-        if args is not None and len(args) is not 0:
-            list_atr = ['id', 'size', 'x', 'y']
-            for i in range(len(args)):
-                if list_atr[i] == 'size':
-                    setattr(self, 'width', args[i])
-                    setattr(self, 'height', args[i])
-                else:
-                    setattr(self, list_atr[i], args[i])
+    def __init__(self, id=None):
+        """initiation method"""
+        if id is not None:
+            self.id = id
         else:
-            for key, value in kwargs.items():
-                if key == 'size':
-                    setattr(self, 'width', value)
-                    setattr(self, 'height', value)
-                else:
-                    setattr(self, key, value)
+            Base.__nb_objects += 1
+            self.id = Base.__nb_objects
 
-    def to_dictionary(self):
-        """ returns dictionary represantation of a square """
-        return {'id': self.id, 'x': self.x, 'size': self.size, 'y': self.y}
+    def integer_validator(self, name, value):
+        """check if value is an integer"""
+        if type(value) is not int:
+            raise TypeError('{} must be an integer'.format(name))
+        if value <= 0:
+            raise ValueError('{} must be > 0'.format(name))
+
+    def integer_validator2(self, name, value):
+        """check if value is an integer"""
+        if type(value) is not int:
+            raise TypeError('{} must be an integer'.format(name))
+        if value < 0:
+            raise ValueError('{} must be >= 0'.format(name))
+
+    @staticmethod
+    def to_json_string(list_dictionaries):
+        """returns JSON string"""
+        return json.dumps(list_dictionaries or [])
+
+    @staticmethod
+    def from_json_string(json_string):
+        """json to string static method"""
+        if json_string:
+            return json.loads(json_string)
+        return []
+
+    @classmethod
+    def save_to_file(cls, list_objs):
+        """writes JSON string to a file"""
+        if list_objs:
+            j = cls.to_json_string([obj.to_dictionary() for obj in list_objs])
+        else:
+            j = '[]'
+        with open(cls.__name__ + '.json', 'w') as f:
+            f.write(j)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """Returns instance with all attributes set"""
+        if cls.__name__ == "Rectangle":
+            dummy = cls(1, 1)
+        if cls.__name__ == "Square":
+            dummy = cls(1)
+        dummy.update(**dictionary)
+        return dummy
+
+    @classmethod
+    def load_from_file(cls):
+        """Returns a list of instances"""
+        try:
+            filename = cls.__name__ + '.json'
+            with open(filename, mode='r') as f:
+                d = cls.from_json_string(f.read())
+            return [cls.create(**x) for x in d]
+        except FileNotFoundError:
+            return []
