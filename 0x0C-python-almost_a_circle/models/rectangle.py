@@ -1,6 +1,5 @@
-FF#!/usr/bin/python3
+#!/usr/bin/python3
 """ Rectangle Mudule """
-
 from models.base import Base
 
 
@@ -36,7 +35,7 @@ class Rectangle(Base):
         return self.__height
 
     @height.setter
-     def height(self, value):
+    def height(self, value):
         """ height setter """
         if type(value) is not int:
             raise TypeError("height must be an integer")
@@ -83,7 +82,7 @@ class Rectangle(Base):
         for row in range(self.__height):
             print("{}{}".format(" " * self.__x, "#" * self.__width))
 
-	def __str__(self):
+    def __str__(self):
         """ str special method """
         return ("[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.__x,
                 self.__y, self.__width, self.__height))

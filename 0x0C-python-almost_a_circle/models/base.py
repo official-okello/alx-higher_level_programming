@@ -20,7 +20,7 @@ class Base:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
 
-	@staticmethod
+    @staticmethod
     def to_json_string(list_dictionaries):
         """ returns JSON representation of list_dictionaries """
         if list_dictionaries is None or list_dictionaries == "[]":
@@ -108,7 +108,7 @@ class Base:
 
     @classmethod
     def load_from_file_csv(cls):
-         """ deserializes from CSV """
+        """ deserializes from CSV """
         filename = "{}.csv".format(cls.__name__)
 
         if os.path.exists(filename) is False:
